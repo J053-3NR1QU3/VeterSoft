@@ -1,52 +1,54 @@
 <%- include ('partials/_header') %>
-
-<div class="modal fade" id="insertar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="insertar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <form action="/usuario/signup" method="post">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Insertar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <input class="form-control" type="text" placeholder="Usuario" name="nombre">
-                <input class="form-control" type="text" placeholder="Password" name="password">
-                <p>El nombre tiene que ser distindo de "admin"</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Insertar</button>
-              </div>
+      <div class="modal-content bg-info">
+        <form action="/cliente/insertar" method="post">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Insertar</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input class="form-control" type="text" placeholder="Usuario" name="nombre">
+            <input class="form-control" type="text" placeholder="Password" name="password">
+            <p>El nombre tiene que ser distindo de "admin"</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Insertar</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
 
 
-  <div class="modal fade" id="actualizarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="actualizarCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form action="/usuario/actualizar" method="post">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Actualizar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <input class="form-control" type="text" id="IDusuario" name="IDusuario" hidden>
-                <input class="form-control" type="text" id="nombre" name="nombre">
-                <input class="form-control" type="text" id="password" name="password">
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Actualizar</button>
-              </div>
+        <form action="/cliente/actualizar" method="post">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Actualizar</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input class="form-control" type="text" id="IDcliente" name="IDcliente" hidden>
+            <input class="form-control" type="text" id="Nombre" name="Nombre">
+            <input class="form-control" type="text" id="Apellido" name="Apellido">
+            <input class="form-control" type="text" id="Telefono" name="Telefono">
+            <input class="form-control" type="text" id="Direccion" name="Direccion">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
 
 
-  <div class="modal fade" id="mostrarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="mostrarCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -54,8 +56,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <input class="form-control" type="text" id="nombreM">
-            <input class="form-control" type="text" id="passwordM">
+          <input class="form-control" type="text" id="NombreM" readonly>
+          <input class="form-control" type="text" id="ApellidoM" readonly>
+          <input class="form-control" type="text" id="TelefonoM" readonly>
+          <input class="form-control" type="text" id="DireccionM" readonly>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -65,84 +69,99 @@
   </div>
 
 
-  <div class="modal fade" id="eliminarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="eliminarCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form action="/usuario/eliminar" method="post">
-            <div class="modal-header">
-                <h5 class="modal-title text-warning" id="exampleModalLabel">Advertencia</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <input class="form-control" type="text" id="IDusuarioE" name="IDusuario" hidden>
-                <h5>¿Esta seguro de hacer esto?</h5>
-                <p>Si lo borras ya no vas a ver nada de él</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-              </div>
+        <form action="/cliente/eliminar" method="post">
+          <div class="modal-header">
+            <h5 class="modal-title text-warning" id="exampleModalLabel">Advertencia</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <input class="form-control" type="text" id="IDusuarioE" name="IDusuario" hidden>
+            <h5>¿Esta seguro de hacer esto?</h5>
+            <p>Si lo borras ya no vas a ver nada de él</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </div>
         </form>
       </div>
     </div>
   </div>
 
 
-<div class="container">
+  <div class="container">
     <br><br><br><br><br>
     <div class="m-0 row justify-content-center">
-        <div class="col-auto p-5 text-center">
-          <h1>Usuario</h1>
-        </div>
+      <div class="col-auto p-5 text-center">
+        <h1>CLIENTE</h1>
+      </div>
     </div>
     <div class="container">
-      <a class="btn" data-bs-toggle="modal" data-bs-target="#insertar"><img src="/Images/mas.png" width="80" height="80"></a>
+      <a class="btn" data-bs-toggle="modal" data-bs-target="#insertar"><img src="/Images/mas.png" width="80"
+          height="80"></a>
       <figcaption> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Agregar</figcaption>
     </div>
     <div class="row mt-5">
-        <div class="col md-7">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Usuario</th>
-                        <th>Password</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%if (data) { %>
-                        <% for (var i=0; i< data.length; i++) { %>
-                            <% if (data[i].nombre != 'admin') { %>
-                                <tr>
-                                    <td><%= (i + 1) %></td>
-                                    <td><%= data[i].nombre %></td>
-                                    <td type="password"><%= data[i].password %></td>
-                                    <td>
-                                        <button class="btn actualizarUsuario btn-success"
-                                            data-bs-placement="top" title="Actualizar"
-                                            data-idusuario="<%= data[i].IDusuario %>"
-                                            data-nombre="<%= data[i].nombre %>"
-                                            data-password="<%= data[i].password %>"
-                                            data-bs-toggle="modal" data-bs-target="#actualizarUsuario">Editar</button>
-                                        <button class="btn mostrarUsuario btn-light"
-                                            data-bs-placement="top" title="Editar"
-                                            data-nombre="<%= data[i].nombre %>"
-                                            data-password="<%= data[i].password %>"
-                                            data-bs-toggle="modal" data-bs-target="#mostrarUsuario">Mostrar</button>
-                                        <button class="btn eliminarUsuario btn-danger"
-                                            data-bs-placement="top" title="Eliminar"
-                                            data-idusuario="<%= data[i].IDusuario %>"
-                                            data-bs-toggle="modal" data-bs-target="#eliminarUsuario">Eliminar</button>
-                                    </td>
-                                </tr>
-                            <% } %>
-                        <% } %>
-                    <% } %>
-                </tbody>
-            </table>
-        </div>
+      <div class="col md-7">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Teléfono</th>
+              <th>Dirección</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%if (data) { %>
+              <% for (var i=0; i< data.length; i++) { %>
+                <tr>
+                  <td hidden>
+                    <%= data[i].IDcliente %>
+                  </td>
+                  <td>
+                    <%= (i + 1) %>
+                  </td>
+                  <td>
+                    <%= data[i].Nombre %>
+                  </td>
+                  <td>
+                    <%= data[i].Apellido %>
+                  </td>
+                  <td>
+                    <%= data[i].Telefono %>
+                  </td>
+                  <td>
+                    <%= data[i].Direccion %>
+                  </td>
+                  <td>
+                    <button class="btn actualizarCliente btn-success" data-bs-placement="top" title="Actualizar"
+                      data-idcliente="<%= data[i].IDcliente %>" data-nombre="<%= data[i].Nombre %>"
+                      data-apellido="<%= data[i].Apellido %>" data-telefono="<%= data[i].Telefono %>"
+                      data-direccion="<%= data[i].Direccion %>" data-bs-toggle="modal"
+                      data-bs-target="#actualizarCliente">Editar</button>
+                    <button class="btn mostrarCliente btn-light" data-bs-placement="top" title="Editar"
+                      data-nombre="<%= data[i].Nombre %>" data-apellido="<%= data[i].Apellido %>"
+                      data-telefono="<%= data[i].Telefono %>" data-direccion="<%= data[i].Direccion %>"
+                      data-bs-toggle="modal" data-bs-target="#mostrarCliente">Mostrar</button>
+                    <button class="btn eliminarCliente btn-danger" data-bs-placement="top" title="Eliminar"
+                      data-idcliente="<%= data[i].IDcliente %>" data-bs-toggle="modal"
+                      data-bs-target="#eliminarCliente">Eliminar</button>
+                  </td>
+                </tr>
+                <% } %>
+                  <% } %>
+          </tbody>
+        </table>
+      </div>
     </div>
-</div>
+  </div>
 
-<%- include ('partials/_footer') %>
+  <%- include ('partials/_footer') %>
