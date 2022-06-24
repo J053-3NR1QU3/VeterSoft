@@ -1,0 +1,183 @@
+<%- include ('partials/_header') %>
+
+<div class="modal fade" id="insertar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-info">
+        <form action="/material/insertar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Insertar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" placeholder="Nombre" name="Nombre">
+                <input class="form-control" type="text" placeholder="Presentacion" name="Presentacion">
+                <input class="form-control" type="text" placeholder="Contenido Neto" name="ContenidoNeto">
+                <input class="form-control" type="text" placeholder="Precio de Compra" name="PrecioCompra">
+                <input class="form-control" type="text" placeholder="Existencia" name="Existencia">
+                <select class="form-select" aria-label="Default select example" name="IDproveedor">
+                    <%if (p) { %>
+                    <option value="<%= p[0].IDproveedor %>"selected><%= p[0].Nombre %></option>
+                    <% for (var i=1; i< p.length; i++) { %>
+                    <option value="<%= p[i].IDproveedor %>"><%= p[i].Nombre %></option>
+                    <% } %>
+                    <% } %>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Insertar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="actualizarMaterial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/material/actualizar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" id="IDmaterial" name="IDmaterialquirurgico" hidden>
+                <input class="form-control" type="text" id="Nombre" name="Nombre">
+                <input class="form-control" type="text" id="Presentacion" name="Presentacion">
+                <input class="form-control" type="text" id="ContenidoNeto" name="ContenidoNeto">
+                <input class="form-control" type="text" id="PrecioCompra" name="PrecioCompra">
+                <input class="form-control" type="text" id="Existencia" name="Existencia">
+                <select class="form-select" aria-label="Default select example" id="IDproveedor" name="IDproveedor">
+                    <%if (p) { %>
+                    <option value="<%= p[0].IDproveedor %>"selected><%= p[0].Nombre %></option>
+                    <% for (var i=1; i< p.length; i++) { %>
+                    <option value="<%= p[i].IDproveedor %>"><%= p[i].Nombre %></option>
+                    <% } %>
+                    <% } %>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="eliminarMaterial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/material/eliminar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title text-warning" id="exampleModalLabel">Advertencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" id="IDmaterialE" name="IDmaterialquirurgico" hidden>
+                <h5>¿Esta totalmente seguro de eliminar el dato?</h5>
+                <p>Los datos eliminados ya no se pueden recuperar</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="mostrarMaterial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Datos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <input class="form-control" type="text" id="NombreM" name="Nombre" readonly>
+            <input class="form-control" type="text" id="PresentacionM" name="Presentacion" readonly>
+            <input class="form-control" type="text" id="ContenidoNetoM" name="ContenidoNeto" readonly>
+            <input class="form-control" type="text" id="PrecioCompraM" name="PrecioCompra" readonly>
+            <input class="form-control" type="text" id="ExistenciaM" name="Existencia" readonly>
+            <select class="form-select" aria-label="Default select example" id="IDproveedorM" name="IDproveedor" readonly>
+                <%if (p) { %>
+                <option value="<%= p[0].IDproveedor %>"selected><%= p[0].Nombre %></option>
+                <% for (var i=1; i< p.length; i++) { %>
+                <option value="<%= p[i].IDproveedor %>"><%= p[i].Nombre %></option>
+                <% } %>
+                <% } %>
+            </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+    <br><br><br><br><br>
+    <div class="m-0 row justify-content-center">
+        <div class="col-auto p-5 text-center">
+          <h1>Material Quirurgico</h1>
+        </div>
+    </div>
+    <div class="container">
+      <a class="btn" data-bs-toggle="modal" data-bs-target="#insertar"><img src="/Images/mas.png" width="80" height="80"></a>
+      <figcaption> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Agregar</figcaption>
+    </div>
+    <div class="row mt-5">
+        <div class="col md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Presentación</th>
+                        <th>Contenido Neto</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if (data) { %>
+                        <% for (var i=0; i< data.length; i++) { %>
+                            <tr>
+                                <td><%= (i + 1) %></td>
+                                <td><%= data[i].Nombre %></td>
+                                <td><%= data[i].Presentacion %></td>
+                                <td><%= data[i].ContenidoNeto %></td>
+                                <td>
+                                    <button class="btn actualizarMaterial btn-success"
+                                            data-bs-placement="top" title="Actualizar"
+                                            data-idmaterial="<%= data[i].IDmaterialquirurgico %>"
+                                            data-nombre="<%= data[i].Nombre %>"
+                                            data-presentacion="<%= data[i].Presentacion %>"
+                                            data-contenido="<%= data[i].ContenidoNeto %>"
+                                            data-precio="<%= data[i].PrecioCompra %>"
+                                            data-existencia="<%= data[i].Existencia %>"
+                                            data-idproveedor="<%= data[i].IDproveedor %>"
+                                            data-bs-toggle="modal" data-bs-target="#actualizarMaterial">Editar</button>
+                                        <button class="btn mostrarMaterial btn-light"
+                                            data-nombre="<%= data[i].Nombre %>"
+                                            data-presentacion="<%= data[i].Presentacion %>"
+                                            data-contenido="<%= data[i].ContenidoNeto %>"
+                                            data-precio="<%= data[i].PrecioCompra %>"
+                                            data-existencia="<%= data[i].Existencia %>"
+                                            data-idproveedor="<%= data[i].IDproveedor %>"
+                                            data-bs-toggle="modal" data-bs-target="#mostrarMaterial">Mostrar</button>
+                                        <button class="btn eliminarMaterial btn-danger"
+                                            data-bs-placement="top" title="Eliminar"
+                                            data-idmaterial="<%= data[i].IDmaterialquirurgico %>"
+                                            data-bs-toggle="modal" data-bs-target="#eliminarMaterial">Eliminar</button>          
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

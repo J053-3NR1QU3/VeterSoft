@@ -1,0 +1,92 @@
+<%- include ('partials/_header') %>
+
+<h1 >VETERSOFT</h1>
+
+<table  WIDTH="100%">
+    <tr>
+        <td>
+            <h4>CLIENTE</h4>
+        </td>
+    </tr>
+    <tr><h3>.</h3></tr>
+    <tr>
+        
+        <td WIDTH="50" HEIGHT="70">
+            <center>
+            <a href="#"data-bs-toggle="modal" data-bs-target="#verificar"><img src="Images/Usuario.png"></a>
+    
+            <figcaption>Usuario</figcaption>
+            </center>
+        </td> 
+         
+        <td WIDTH="50" HEIGHT="70">
+            <center>
+            <a href="/cliente"><img src="Images/Cliente.png"></a>
+            <figcaption>Cliente</figcaption>
+            </center>
+        </td>
+        <td WIDTH="50" HEIGHT="70">
+            <center> 
+            <a href="/mascota"><img src="Images/Mascota.png"></a>
+            <figcaption>Mascota</figcaption>
+            </center>
+        </td>
+    </tr>
+    <tr>
+        <td WIDTH="50" HEIGHT="70">
+            <center>
+            <a href="/proveedor"><img src="Images/Provedor.png"></a>
+            <figcaption>Proveedores</figcaption>
+            </center>
+        </td>  
+        <td WIDTH="50" HEIGHT="70">
+            <center>
+            <a href="/medicamento"><img src="Images/Medicamento.png"></a>
+            <figcaption>Medicamentos</figcaption>
+            </center>
+        </td>
+        <td WIDTH="50" HEIGHT="70">
+            <center>
+            <a href="/material"><img src="Images/MaterialQ.png"></a>
+            <figcaption>Material Quirurgico</figcaption>
+            </center>
+        </td>
+        
+    </tr>
+    <tr>
+         
+        <td WIDTH="50" HEIGHT="70">
+            <center>
+            <a href="/proveedor"><img src="Images/catalago.png"></a>
+            <figcaption>Catalagos</figcaption>
+            </center>
+        </td>
+        <td WIDTH="50" HEIGHT="70">
+            
+        </td>
+    </tr>
+</table>
+
+<div class="modal fade" id="verificar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/verificar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Verificar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" placeholder="Usuario" name="nombre">
+                <input class="form-control" type="text" placeholder="Password" name="password">
+                <p>Ingresa los datos de administrador para poder acceder a este apartado</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Acceder</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<%- include ('partials/_footer') %>

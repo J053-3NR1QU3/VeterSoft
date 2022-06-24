@@ -1,0 +1,325 @@
+<%- include ('partials/_header') %>
+
+<div class="modal fade" id="insertar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/mascota/insertar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Insertar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" placeholder="Nombre" name="Nombre">
+                <div class="container">
+                  <div class="row">
+                      <div class="col">
+                          <label class="form-control" type="text" for="">Especie: </label>
+                      </div>
+                      <div class="col">
+                          <select class="form-select" aria-label="Default select example" name="Especie">
+                              <%if (c) { %>
+                              <option value="<%= c[0].IdEspecie %>"selected><%= c[0].Especie %></option>
+                              <% for (var i=1; i< c.length; i++) { %>
+                              <option value="<%= c[i].IdEspecie %>"><%= c[i].Especie %></option>
+                              <% } %>
+                              <% } %>
+                          </select>
+                      </div>
+                  </div>
+                </select>
+              </div>
+                <input class="form-control" type="text" placeholder="Peso" name="Peso">
+                <div class="container">
+                  <div class="row">
+                      <div class="col">
+                          <label class="form-control" type="text" for="">Raza: </label>
+                      </div>
+                      <div class="col">
+                          <select class="form-select" aria-label="Default select example"  name="Raza">
+                              <%if (e) { %>
+                              <option value="<%= e[0].IdRaza %>"selected><%= e[0].Raza %></option>
+                              <% for (var i=1; i< e.length; i++) { %>
+                              <option value="<%= e[i].IdRaza %>"><%= e[i].Raza %></option>
+                              <% } %>
+                              <% } %>
+                          </select>
+                      </div>
+                  </div>
+                </select>
+              </div>
+                <input class="form-control" type="text" placeholder="Sexo" name="Sexo">
+                <input class="form-control" type="text" placeholder="Edad" name="Edad">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-control" type="text" for="">Dueño: </label>
+                        </div>
+                        <div class="col">
+                            <select class="form-select" aria-label="Default select example" name="IDcliente">
+                                <%if (d) { %>
+                                <option value="<%= d[0].IDcliente %>"selected><%= d[0].Nombre %></option>
+                                <% for (var i=1; i< d.length; i++) { %>
+                                <option value="<%= d[i].IDcliente %>"><%= d[i].Nombre %></option>
+                                <% } %>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Insertar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="actualizarMascota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/mascota/actualizar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" id="IDmascota" name="IDmascota" hidden>
+                <input class="form-control" type="text" id="Nombre" name="Nombre">
+                <div class="container">
+                  <div class="row">
+                      <div class="col">
+                          <label class="form-control" type="text" for="">Especie: </label>
+                      </div>
+                      <div class="col">
+                          <select class="form-select" aria-label="Default select example" name="Especie">
+                              <%if (c) { %>
+                              <option value="<%= c[0].IdEspecie %>"selected><%= c[0].Especie %></option>
+                              <% for (var i=1; i< c.length; i++) { %>
+                              <option value="<%= c[i].IdEspecie %>"><%= c[i].Especie %></option>
+                              <% } %>
+                              <% } %>
+                          </select>
+                      </div>
+                  </div>
+                </select>
+              </div>
+                
+                <input class="form-control" type="text" id="Peso" name="Peso">
+                <div class="container">
+                  <div class="row">
+                      <div class="col">
+                          <label class="form-control" type="text" for="">Raza: </label>
+                      </div>
+                      <div class="col">
+                          <select class="form-select" aria-label="Default select example" name="Raza">
+                              <%if (e) { %>
+                              <option value="<%= e[0].IdRaza %>"selected><%= e[0].Raza %></option>
+                              <% for (var i=1; i< e.length; i++) { %>
+                              <option value="<%= e[i].IdRaza %>"><%= e[i].Raza %></option>
+                              <% } %>
+                              <% } %>
+                          </select>
+                      </div>
+                  </div>
+                </select>
+              </div>
+                <input class="form-control" type="text" id="Sexo" name="Sexo">
+                <input class="form-control" type="text" id="Edad" name="Edad">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-control" type="text" for="">Dueño: </label>
+                        </div>
+                        <div class="col">
+                            <select class="form-select" aria-label="Default select example" id="IDcliente" name="IDcliente">
+                                <%if (d) { %>
+                                <option value="<%= d[0].IDcliente %>"selected><%= d[0].Nombre %></option>
+                                <% for (var i=1; i< d.length; i++) { %>
+                                <option value="<%= d[i].IDcliente %>"><%= d[i].Nombre %></option>
+                                <% } %>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="mostrarMascota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Datos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <input class="form-control" type="text" id="NombreM" name="Nombre" readonly>
+            <div class="container">
+              <div class="row">
+                  <div class="col">
+                      <label class="form-control" type="text" for="">Especie: </label>
+                  </div>
+                  <div class="col">
+                      <select class="form-select" aria-label="Default select example" id="idE" name="IdEspecie">
+                          <%if (c) { %>
+                          <option value="<%= c[0].IdEspecie %>"selected><%= c[0].Especie %></option>
+                          <% for (var i=1; i< c.length; i++) { %>
+                          <option value="<%= c[i].IdEspecie %>"><%= c[i].Especie %></option>
+                          <% } %>
+                          <% } %>
+                      </select>
+                  </div>
+              </div>
+            </select>
+          </div>
+            <input class="form-control" type="text" id="PesoM" name="Peso" readonly>
+            <div class="container">
+              <div class="row">
+                  <div class="col">
+                      <label class="form-control" type="text" for="">Raza: </label>
+                  </div>
+                  <div class="col">
+                      <select class="form-select" aria-label="Default select example" id="idR" name="IdRaza">
+                          <%if (e) { %>
+                          <option value="<%= e[0].IdRaza %>"selected><%= e[0].Raza %></option>
+                          <% for (var i=1; i< e.length; i++) { %>
+                          <option value="<%= e[i].IdRaza %>"><%= e[i].Raza %></option>
+                          <% } %>
+                          <% } %>
+                      </select>
+                  </div>
+              </div>
+            </select>
+          </div>
+            <input class="form-control" type="text" id="SexoM" name="Sexo" readonly>
+            <input class="form-control" type="text" id="EdadM" name="Edad" readonly>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <label class="form-control" type="text" for="">Dueño: </label>
+                    </div>
+                    <div class="col">
+                        <select class="form-select" aria-label="Default select example" id="IDclienteM" name="IDcliente" readonly>
+                            <%if (d) { %>
+                            <option value="<%= d[0].IDcliente %>"><%= d[0].Nombre %></option>
+                            <% for (var i=1; i< d.length; i++) { %>
+                            <option value="<%= d[i].IDcliente %>"><%= d[i].Nombre %></option>
+                            <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+              </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="eliminarMascota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/mascota/eliminar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title text-warning" id="exampleModalLabel">Advertencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" id="IDmascotaE" name="IDmascota" hidden>
+                <h5>¿Esta totalmente seguro de eliminar el dato?</h5>
+                <p>Los datos eliminados ya no se pueden recuperar</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<div class="container">
+    <br><br><br><br><br>
+    <div class="m-0 row justify-content-center">
+        <div class="col-auto p-5 text-center">
+          <h1>Mascota</h1>
+        </div>
+    </div>
+    <div class="container">
+      <a class="btn" data-bs-toggle="modal" data-bs-target="#insertar"><img src="/Images/mas.png" width="80" height="80"></a>
+      <figcaption> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Agregar</figcaption>
+    </div>
+    <div class="row mt-5">
+        <div class="col md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Mascota</th>
+                        <th>Nombre</th>
+                        <th>Especie</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if (data) { %>
+                        <% for (var i=0; i< data.length; i++) { %>
+                            <tr>
+                                <td><%= (i + 1) %></td>
+                                <td><%= data[i].Nombre %></td>
+                                <td><%= data[i].Especie %></td>
+                                <td>
+                                    <button class="btn actualizarMascota btn-success"
+                                            data-bs-placement="top" title="Actualizar"
+                                            data-idmascota="<%= data[i].IDmascota %>"
+                                            data-nombre="<%= data[i].Nombre %>"
+                                            data-especie="<%= data[i].Especie %>"
+                                            data-peso="<%= data[i].Peso %>"
+                                            data-raza="<%= data[i].Raza %>"
+                                            data-sexo="<%= data[i].Sexo %>"
+                                            data-edad="<%= data[i].Edad %>"
+                                            data-idcliente="<%= data[i].IDcliente %>"
+                                            data-bs-toggle="modal" data-bs-target="#actualizarMascota">Editar</button>
+                                        <button class="btn mostrarMascota btn-light"
+                                            data-nombre="<%= data[i].Nombre %>"
+                                            data-especie="<%= data[i].Especie %>"
+                                            data-peso="<%= data[i].Peso %>"
+                                            data-raza="<%= data[i].Raza %>"
+                                            data-sexo="<%= data[i].Sexo %>"
+                                            data-edad="<%= data[i].Edad %>"
+                                            data-idcliente="<%= data[i].IDcliente %>"
+                                            data-bs-toggle="modal" data-bs-target="#mostrarMascota">Mostrar</button>
+                                        <button class="btn eliminarMascota btn-danger"
+                                            data-bs-placement="top" title="Eliminar"
+                                            data-idmascota="<%= data[i].IDmascota %>"
+                                            data-bs-toggle="modal" data-bs-target="#eliminarMascota">Eliminar</button>
+                                            <a href="/mascota/mascota" class="btn btn-warning">Mas..</a>
+                                            
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

@@ -1,0 +1,133 @@
+<%- include ('partials/_header') %>
+
+<div class="modal fade" id="insertar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-info">
+        <form action="/mascota/historialInsertar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Insertar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" placeholder="Vacunaciones" name="Vacunaciones">
+                <input class="form-control" type="text" placeholder="Temperatura corporal" name="Temperaturacorporal">
+                <input class="form-control" type="date" placeholder="Fecha de Ingreso" name="FechaIngreso">
+                <input class="form-control" type="date" placeholder="Fecha de Modificacion" name="FechaModificacion">
+                <input class="form-control" type="text" placeholder="Frecuencia Cardiaca" name="FrecuenciaCardiaca">
+                <input class="form-control" type="text" placeholder="Frecuencia Respiratoria" name="FrecuenciaRespiratoria">
+                <select class="form-select" aria-label="Default select example" name="IDmascota">
+                    <%if (m) { %>
+                    <option value="<%= m[0].IDmascota %>"selected><%= m[0].Nombre %></option>
+                    <% for (var i=1; i< m.length; i++) { %>
+                    <option value="<%= m[i].IDmascota %>"><%= m[i].Nombre %></option>
+                    <% } %>
+                    <% } %>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Insertar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="actualizarHistorial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/mascota/historialActualizar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" id="IDhistorial" name="IDhistorialclinico" hidden>
+                <input class="form-control" type="text" id="Vacunaciones" name="Vacunaciones">
+                <input class="form-control" type="text" id="Temperatura" name="Temperaturacorporal">
+                <input class="form-control" type="date" id="FechaIn" name="FechaIngreso">
+                <input class="form-control" type="date" id="FechaMo" name="FechaModificacion">
+                <input class="form-control" type="text" id="FrecuenciaCar" name="FrecuenciaCardiaca">
+                <input class="form-control" type="text" id="FrecuenciaRes" name="FrecuenciaRespiratoria">
+                <select class="form-select" aria-label="Default select example" id="IDmascota" name="IDmascota">
+                    <%if (m) { %>
+                    <option value="<%= m[0].IDmascota %>"selected><%= m[0].Nombre %></option>
+                    <% for (var i=1; i< m.length; i++) { %>
+                    <option value="<%= m[i].IDmascota %>"><%= m[i].Nombre %></option>
+                    <% } %>
+                    <% } %>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+    <br><br><br><br><br>
+    <div class="m-0 row justify-content-center">
+        <div class="col-auto p-5 text-center">
+          <h1>Historial clínico</h1>
+        </div>
+    </div>
+    <div class="container">
+    <a class="btn" href="/mascota/mascota"><img src="/Images/flecha.png" width="80" height="80"></a>
+      <a class="btn" data-bs-toggle="modal" data-bs-target="#insertar"><img src="/Images/mas.png" width="80" height="80"></a>
+      <figcaption> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regresar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agregar</figcaption>
+    </div>
+    <div class="row mt-5">
+        <div class="col md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Vacunaciones</th>
+                        <th>Temperatura corporal</th>
+                        <th>Fecha de Ingreso</th>
+                        <th>Fecha de Modificacion</th>
+                        <th>Frecuencia Cardiaca</th>
+                        <th>Frecuencia Respiratoria</th>
+                        <th>Mascota</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if (data) { %>
+                        <% for (var i=0; i< data.length; i++) { %>
+                            <tr>
+                                <td><%= (i + 1) %></td>
+                                <td><%= data[i].Vacunaciones %></td>
+                                <td><%= data[i].Temperaturacorporal %></td>
+                                <td><%= data[i].FechaIngreso %></td>
+                                <td><%= data[i].FechaModificacion %></td>
+                                <td><%= data[i].FrecuenciaCardiaca %></td>
+                                <td><%= data[i].FrecuenciaRespiratoria %></td>
+                                <td><%= data[i].IDmascota %></td>
+                                <td style="width: 100px;">
+                                    <button class="btn actualizarHistorial btn-primary" Style="background-color:rgb(44, 142, 253)"
+                                            data-bs-placement="top" title="Actualizar"
+                                            data-idhistorial="<%= data[i].IDhistorialclinico %>"
+                                            data-vacunaciones="<%= data[i].Vacunaciones %>"
+                                            data-temperatura="<%= data[i].Temperaturacorporal %>"
+                                            data-fechaI="<%= data[i].FechaIngreso %>"
+                                            data-fechaM="<%= data[i].FechaModificacion %>"
+                                            data-frecuenciaC="<%= data[i].FrecuenciaCardiaca %>"
+                                            data-frecuenciaR="<%= data[i].FrecuenciaRespiratoria %>"
+                                            data-idmascota="<%= data[i].IDmascota %>"
+                                            data-bs-toggle="modal" data-bs-target="#actualizarHistorial">Editar</button>
+                                    <a href="/mascota/vacuna" class="btn btn-warning">Vacuna</a>         
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

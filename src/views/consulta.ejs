@@ -1,0 +1,60 @@
+<%- include ('partials/_header') %>
+
+<div class="container">
+    <br><br><br><br><br>
+    <div class="m-0 row justify-content-center">
+        <div class="col-auto p-5 text-center">
+          <h1>Consulta</h1>
+        </div>
+    </div>
+    <div class="container">
+    <a class="btn" href="/mascota/mascota"><img src="/Images/flecha.png" width="80" height="80"></a>
+      <a class="btn" data-bs-toggle="modal" data-bs-target="#insertar"><img src="/Images/mas.png" width="80" height="80"></a>
+      <figcaption> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regresar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agregar</figcaption>
+    </div>
+    <div class="row mt-5">
+        <div class="col md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID Diagnostico</th>
+                        <th>ID Consulta</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if (data) { %>
+                        <% for (var i=0; i< data.length; i++) { %>
+                            <tr>
+                                <td><%= (i + 1) %></td>
+                                <td><%= data[i].IDmascota %></td>
+                                <td style="width: 100px;">
+                                    <button class="btn actualizarHistorial btn-primary" Style="background-color:rgb(44, 142, 253)"
+                                            data-bs-placement="top" title="Actualizar"
+                                            data-idhistorial="<%= data[i].IDhistorialclinico %>"
+                                            data-vacunaciones="<%= data[i].Vacunaciones %>"
+                                            data-temperatura="<%= data[i].Temperaturacorporal %>"
+                                            data-fechaI="<%= data[i].FechaIngreso %>"
+                                            data-fechaM="<%= data[i].FechaModificacion %>"
+                                            data-frecuenciaC="<%= data[i].FrecuenciaCardiaca %>"
+                                            data-frecuenciaR="<%= data[i].FrecuenciaRespiratoria %>"
+                                            data-idmascota="<%= data[i].IDmascota %>"
+                                            data-bs-toggle="modal" data-bs-target="#actualizarHistorial">Editar</button>
+                                            <button class="btn mostrarCliente btn-light"
+                                            data-bs-placement="top" title="Editar"
+                                            data-nombre="<%= data[i].Nombre %>"
+                                            data-apellido="<%= data[i].Apellido %>"
+                                            data-telefono="<%= data[i].Telefono %>"
+                                            data-direccion="<%= data[i].Direccion %>"
+                                            data-bs-toggle="modal" data-bs-target="#mostrarCliente">Mostrar</button>         
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

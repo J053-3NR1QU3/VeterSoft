@@ -1,0 +1,170 @@
+<%- include ('partials/_header') %>
+
+<div class="modal fade" id="insertar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-info">
+        <form action="/medicamento/insertar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Insertar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" placeholder="Nombre" name="Nombre">
+                <input class="form-control" type="text" placeholder="Presentacion" name="Presentacion">
+                <input class="form-control" type="text" placeholder="Contenido Neto" name="ContenidoNeto">
+                <input class="form-control" type="text" placeholder="Precio de Compra" name="PrecioCompra">
+                <input class="form-control" type="text" placeholder="Precio de Venta" name="PrecioVenta">
+                <input class="form-control" type="text" placeholder="Existencia" name="Existencia">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Insertar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="mostrarMedicamento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Datos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input class="form-control" type="text" id="NombreM" readonly>
+          <input class="form-control" type="text" id="PresentacionM" readonly>
+          <input class="form-control" type="text" id="ContenidoNetoM" readonly>
+          <input class="form-control" type="text" id="PrecioCompraM" readonly>
+          <input class="form-control" type="text" id="PrecioVentaM" readonly>
+          <input class="form-control" type="text" id="ExistenciaM" readonly>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="actualizarMedicamento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/medicamento/actualizar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" id="IDmedicamento" name="IDmedicamento" hidden>
+                <input class="form-control" type="text" id="Nombre" name="Nombre">
+                <input class="form-control" type="text" id="Presentacion" name="Presentacion">
+                <input class="form-control" type="text" id="ContenidoNeto" name="ContenidoNeto">
+                <input class="form-control" type="text" id="PrecioCompra" name="PrecioCompra">
+                <input class="form-control" type="text" id="PrecioVenta" name="PrecioVenta">
+                <input class="form-control" type="text" id="Existencia" name="Existencia">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="eliminarMedicamento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="/medicamento/eliminar" method="post">
+            <div class="modal-header">
+                <h5 class="modal-title text-warning" id="exampleModalLabel">Advertencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input class="form-control" type="text" id="IDmedicamentoE" name="IDmedicamento" hidden>
+                <h5>¿Esta totalmente seguro de eliminar el dato?</h5>
+                <p>Los datos eliminados ya no se pueden recuperar</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+    <br><br><br><br><br>
+    <div class="m-0 row justify-content-center">
+        <div class="col-auto p-5 text-center">
+          <h1>Medicamento</h1>
+        </div>
+    </div>
+    <div class="container">
+      <a class="btn" data-bs-toggle="modal" data-bs-target="#insertar"><img src="/Images/mas.png" width="80" height="80"></a>
+      <figcaption> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Agregar</figcaption>
+    </div>
+    <div class="row mt-5">
+        <div class="col md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Presentacion</th>
+                        <th>Contenido Neto</th>
+                        <th>Precio de Compra</th>
+                        <th>Precio de Venta</th>
+                        <th>Existencia</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if (data) { %>
+                        <% for (var i=0; i< data.length; i++) { %>
+                            <tr>
+                                <td hidden><%= data[i].IDmedicamento %></td>
+                                <td><%= (i + 1) %></td>
+                                <td><%= data[i].Nombre %></td>
+                                <td><%= data[i].Presentacion %></td>
+                                <td><%= data[i].ContenidoNeto %></td>
+                                <td><%= data[i].PrecioCompra %></td>
+                                <td><%= data[i].PrecioVenta %></td>
+                                <td><%= data[i].Existencia %></td>
+                                <td>
+                                    <button class="btn actualizarMedicamento btn-success"
+                                        data-bs-placement="top" title="Actualizar"
+                                        data-idmedicamento="<%= data[i].IDmedicamento %>"
+                                        data-nombre="<%= data[i].Nombre %>"
+                                        data-presentacion="<%= data[i].Presentacion %>"
+                                        data-contenidoneto="<%= data[i].ContenidoNeto %>"
+                                        data-preciocompra="<%= data[i].PrecioCompra %>"
+                                        data-precio-venta="<%= data[i].PrecioVenta %>"
+                                        data-existencia="<%= data[i].Existencia %>"
+                                        data-bs-toggle="modal" data-bs-target="#actualizarMedicamento">Editar</button>
+                                    <button class="btn mostrarMedicamento btn-light"
+                                        data-bs-placement="top" title="Editar"
+                                        data-nombre="<%= data[i].Nombre %>"
+                                        data-presentacion="<%= data[i].Presentacion %>"
+                                        data-contenidoneto="<%= data[i].ContenidoNeto %>"
+                                        data-preciocompra="<%= data[i].PrecioCompra %>"
+                                        data-precioventa="<%= data[i].PrecioVenta %>"
+                                        data-existencia="<%= data[i].Existencia %>"
+                                        data-bs-toggle="modal" data-bs-target="#mostrarMedicamento">Mostrar</button>
+                                    <button class="btn eliminarMedicamento btn-danger"
+                                        data-bs-placement="top" title="Eliminar"
+                                        data-idmedicamento="<%= data[i].IDmedicamento %>"
+                                        data-bs-toggle="modal" data-bs-target="#eliminarMedicamento">Eliminar</button>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>
